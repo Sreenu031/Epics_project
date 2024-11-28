@@ -1,5 +1,5 @@
-Flask==2.3.3
-mysql-connector-python==8.0.33
-psycopg2==2.9.7
-werkzeug==2.3.3
-gunicorn==20.1.0
+Flask
+mysql-connector-python
+psycopg2
+werkzeug
+gunicorn
