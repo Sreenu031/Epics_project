@@ -3,3 +3,6 @@ mysql-connector-python
 psycopg2
 werkzeug
 gunicorn
+joblib
+sklearn
+pandas
