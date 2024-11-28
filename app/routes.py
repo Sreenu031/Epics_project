@@ -2,7 +2,7 @@ from flask import Blueprint
 import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, session,jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from model import predict_value
+from app.model import predict_value
 from datetime import datetime
 import psycopg2.extras
 import os
