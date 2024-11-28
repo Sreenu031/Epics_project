@@ -12,6 +12,7 @@ main = Blueprint('main', __name__)
 # Database connection
 def get_db_connection():
     DATABASE_URL=os.environ.get('DATABASE_URL')
+    #DATABASE_URL='postgresql://student_project_user:hZcbTTPzdyI4xPaaq5xK09Wt0SVO2C9y@dpg-ct48si5ds78s73bh50ag-a.oregon-postgres.render.com/student_project'
     con = psycopg2.connect(
         # host="localhost",
         # user="postgres",

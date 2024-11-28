@@ -3,8 +3,8 @@ import sklearn
 import pandas
 # Load the saved model and LabelEncoder
 def predict_value(values):
-    svc_model = joblib.load('svc_model.pkl')
-    le = joblib.load('label_encoder.pkl')
+    svc_model = joblib.load('app/svc_model.pkl')
+    le = joblib.load('app/label_encoder.pkl')
 
     # Manually input a sample with the same number of features as X_train
     manual_input = values#[[0, 1, 2, 2, 1, 0, 2, 1, 1, 0, 2, 0, 1, 2, 1, 0, 0, 1, 0, 1, 0, 2, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0]]  # Replace these values with appropriate features
