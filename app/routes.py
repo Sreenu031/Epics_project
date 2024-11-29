@@ -32,7 +32,7 @@ def signup():
         user_type = request.form['user_type']
         name = request.form['name']
         contact_number = request.form['contact_number']
-        address = request.form.get('address')  # Only for organization users
+        address = request.form.get('address').lower() # Only for organization users
 
         conn = get_db_connection()
         cursor = conn.cursor()
