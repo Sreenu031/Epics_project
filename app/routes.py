@@ -111,17 +111,21 @@ def dashboard():
                 # Connect to the database
                 conn = get_db_connection()
                 cursor = conn.cursor()
-                print(session['user_id'])
+                #print(session['user_id'])
                 # Fetch students related to the organization
                 cursor.execute("SELECT stud_id, name, age FROM students WHERE org_id = %s", (org_id,))
 
                 students = cursor.fetchall()  # students will be a list of tuples [(id, name), ...]
 
+                cursor.execute("SELECT name FROM organization WHERE organization_id = %s", (org_id,))
+
+                organization_name=cursor.fetchone()
+
                 cursor.close()
                 conn.close()
 
                 # Pass the fetched students to the template
-                return render_template('organisation.html', students=students)
+                return render_template('organisation.html', students=students,orgization=organization_name[0])
         else:
             return "Unknown user type", 400  # Return an error for unknown user types
     return redirect(url_for('main.login'))
@@ -434,3 +438,23 @@ def doctors():
     conn.close()
 
     return render_template('doctors_list.html', doctors=doctors)
+@main.route('/profile')
+def profile():
+    # Ensure the user is logged in
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    org_id = session['user_id']  # Get the organization ID from the session
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Fetch organization details from the database
+    query = "SELECT organization_id,name, address, contact_num FROM organization WHERE organization_id = %s"
+    cursor.execute(query, (org_id,))
+    organization = cursor.fetchone()
+
+    if not organization:
+        return "Organization not found", 404
+
+    # Pass organization details to the profile.html template
+    return render_template('profile.html', organization=organization)
